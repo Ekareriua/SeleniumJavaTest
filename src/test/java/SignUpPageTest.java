@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class SignUpPageTest {
+public class SignUpPageTest{
 
     WebDriver driver;
     SignUpPage signUpPage;
@@ -26,10 +26,27 @@ public class SignUpPageTest {
     }
 
     @Test
+    public void signUpWithIncorrectEmail() {
+        signUpPage.typeEmailAddress("rrrrertrr");
+        String errorEmail = signUpPage.getEmailErrorText();
+        Assert.assertEquals("Email is invalid or already taken", errorEmail);
+    }
+
+    @Test
     public void signUpWithShortPass() {
-//        SignUpPage sp = signUpPage.typePassword("sdf");
-//        String error = sp.getPasswordErrorText();
-//        Assert.assertEquals();
+        signUpPage.typeEmailAddress("rrrrertrr@r.com");
+        signUpPage.typePassword("sss");
+        String errorPassword = signUpPage.getPasswordErrorText();
+        Assert.assertEquals("Password is too short", errorPassword);
+    }
+
+    @Test
+    public void signUpWithShortUserName() {
+        signUpPage.typeEmailAddress("rrrrertrr@r.com");
+        signUpPage.typePassword("ssFA234JIOMs");
+        signUpPage.typeUserName("aa");
+        String errorUserName = signUpPage.getUserNameErrorText();
+        Assert.assertEquals("Username aa is not available.", errorUserName);
     }
 
     @After

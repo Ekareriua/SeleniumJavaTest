@@ -36,39 +36,47 @@ public class SignUpPage {
 
     public SignUpPage typeEmailAddress(String email) {
         wait = new WebDriverWait(driver, 5);
-
+        WebElement emailFieldEl = driver.findElement(emailField);
+        WebElement emailContinueEl = driver.findElement(emailContinue);
+        wait.until(ExpectedConditions.visibilityOf(emailFieldEl));
         driver.findElement(emailField).sendKeys(email);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(emailContinue));
         } catch (Exception e) {
             e.printStackTrace();
         }
-            driver.findElement(emailContinue).click();
+        emailContinueEl.click();
 
         return this;
     }
 
     public SignUpPage typePassword(String password) {
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
+        WebElement passwordFieldEl = driver.findElement(passwordField);
+        WebElement passwordContinueEl = driver.findElement(passwordContinue);
+        wait.until(ExpectedConditions.visibilityOf(passwordFieldEl));
         driver.findElement(passwordField).sendKeys(password);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(passwordContinue));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        driver.findElement(passwordContinue).click();
+        passwordContinueEl.click();
         return this;
     }
 
     public SignUpPage typeUserName(String username) {
         wait = new WebDriverWait(driver, 5);
+        WebElement usernameFieldEl = driver.findElement(usernameField);
+        WebElement usernameContinueEl = driver.findElement(usernameContinue);
+        wait.until(ExpectedConditions.visibilityOf(usernameFieldEl));
         driver.findElement(usernameField).sendKeys(username);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(usernameContinue));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        driver.findElement(usernameContinue).click();
+        usernameContinueEl.click();
         return this;
     }
 
@@ -78,11 +86,11 @@ public class SignUpPage {
         return this;
     }
 
-    public SignUpPage registerWithInvalidCredits(String email, String password, String username, String option) {
+    public SignUpPage registerWithAllInvalidCredits(String email, String password, String username) {
         this.typeEmailAddress(email);
         this.typePassword(password);
         this.typeUserName(username);
-        this.typeOption(option);
+//        this.typeOption(option);
         return new SignUpPage(driver);
 
     }
