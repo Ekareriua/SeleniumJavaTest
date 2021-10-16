@@ -10,7 +10,7 @@ public class LoginPage {
 
 
     private By loginField = By.cssSelector("#login_field");
-    private By passwordField = By.cssSelector("password");
+    private By passwordField = By.cssSelector("#password");
     private By signInButton = By.xpath("//input[@value='Sign in']");
     private By heading = By.xpath("//div[contains(@class, 'auth-form-header p-0')]/h1");
     private By error = By.xpath("//div[@id='js-flash-container']//div[@class='container-lg px-2']");
@@ -26,7 +26,7 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage loginWithInvalidCredits (String username,String password) {
+    public LoginPage loginWithInvalidCredits(String username,String password) {
         this.typeUsername(username);
         this.typePassword(password);
         driver.findElement(signInButton).click();

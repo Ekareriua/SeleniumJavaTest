@@ -35,7 +35,8 @@ public class SignUpPage {
 
 
     public SignUpPage typeEmailAddress(String email) {
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
+
         driver.findElement(emailField).sendKeys(email);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(emailContinue));

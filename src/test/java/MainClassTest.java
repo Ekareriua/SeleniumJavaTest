@@ -4,12 +4,10 @@ public class MainClassTest {
 
 //    @BeforeClass
 //    public void beforeClassMethod() {
-//
 //    }
 //
 //    @Before
 //    public void setUp() {
-//
 //    }
 
     @Test
@@ -42,11 +40,9 @@ public class MainClassTest {
 
 //    @After
 //    public void tearDown() {
-//
 //    }
 //
 //    @AfterClass
 //    public void afterClassMethod() {
-//
 //    }
 }
