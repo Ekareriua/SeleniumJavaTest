@@ -44,8 +44,6 @@ public class MainPageTest {
     @Test
     public void registerFailTest() {
         SignUpPage signUpPage = mainPage.clickSignUp();
-        WebElement emailField = driver.findElement(By.cssSelector("#email"));
-        wait.until(ExpectedConditions.visibilityOf(emailField));
         signUpPage.typeEmailAddress("aaaaaaaa");
         String error = signUpPage.getEmailErrorText();
         Assert.assertEquals("Email is invalid or already taken", error);
@@ -54,9 +52,7 @@ public class MainPageTest {
     @Test
     public void signUpEmptyEmailTest() {
         SignUpPage signUpPage = mainPage.clickSignUp();
-        WebElement emailField = driver.findElement(By.cssSelector("#email"));
         WebElement emailContinue = driver.findElement(By.xpath("//div[@id='email-container']//button"));
-        wait.until(ExpectedConditions.visibilityOf(emailField));
         signUpPage.typeEmailAddress("");
         boolean emailContinueButton = emailContinue.isEnabled();
         Assert.assertFalse("email Continue Button is Enabled", emailContinueButton);
@@ -67,50 +63,9 @@ public class MainPageTest {
         SignUpPage signUpPage = mainPage.register("fsgd@sds.com");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='email-container']//button")));
         driver.findElement(By.xpath("//div[@id='email-container']//button")).click();
-        WebElement passwordField = driver.findElement(By.cssSelector("#password"));
-        wait.until(ExpectedConditions.visibilityOf(passwordField));
         signUpPage.typePassword("ssss");
         String error = signUpPage.getPasswordErrorText();
         Assert.assertEquals("Password is too short", error);
-    }
-
-    @Test
-    @Ignore
-    public void signUpWithInvalidEmailTest() {
-        /**it was moved to the SignUpPageTest.java class and is called signUpWithIncorrectEmail**/
-//        SignUpPage signUpPage = mainPage.clickSignUp();
-//        signUpPage.typeEmailAddress("rrrrertrr");
-//        String errorEmail = signUpPage.getEmailErrorText();
-//        Assert.assertEquals("Email is invalid or already taken", errorEmail);
-    }
-
-    @Test
-    @Ignore
-    public void signUpWithInvalidPasswordTest() {
-        /**it was moved to the SignUpPageTest.java class and is called signUpWithShortPass**/
-//        SignUpPage signUpPage = mainPage.clickSignUp();
-//        signUpPage.typeEmailAddress("rrrrertrr@r.com");
-//        signUpPage.typePassword("sss");
-//        String errorPassword = signUpPage.getPasswordErrorText();
-//        Assert.assertEquals("Password is too short", errorPassword);
-    }
-
-    @Test
-    @Ignore
-    public void signUpWithInvalidUserNameTest() {
-        /**it was moved to the SignUpPageTest.java class and is called signUpWithShortUserName**/
-//        SignUpPage signUpPage = mainPage.clickSignUp();
-//        signUpPage.typeEmailAddress("rrrrertrr@r.com");
-//        signUpPage.typePassword("ssFA234JIOMs");
-//        signUpPage.typeUserName("aa");
-//        String errorUserName = signUpPage.getUserNameErrorText();
-//        Assert.assertEquals("Username aa is not available.", errorUserName);
-//
-//        By usernameContinue = By.xpath("//div[@id='username-container']//button[contains(text(), 'Continue')]");
-//        boolean usernameContinueEn = driver.findElement(usernameContinue).isEnabled();
-//        Assert.assertFalse("username Continue is Enabled", usernameContinueEn);
-
-//        Assert.assertTrue("username Continue is DisEnabled", usernameContinueEn);
     }
 
     @Test

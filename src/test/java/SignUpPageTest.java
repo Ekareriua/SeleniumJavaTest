@@ -49,6 +49,12 @@ public class SignUpPageTest{
         Assert.assertEquals("Username aa is not available.", errorUserName);
     }
 
+    @Test
+    public void getHeadingTest() {
+        String heading = signUpPage.getHeadingText();
+        Assert.assertEquals("Welcome to GitHub! Let's begin the adventure", heading);
+    }
+
     @After
     public void tearDown() {
         driver.quit();
